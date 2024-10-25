@@ -1,0 +1,9 @@
+(defsrc
+	caps
+)
+(defalias
+	escaps (tap-hold esc super 100 100)
+)
+(deflayer nichaud
+	@escaps
+)
