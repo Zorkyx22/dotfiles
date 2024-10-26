@@ -60,6 +60,11 @@
       prismlauncher
       nvtopPackages.nvidia
       stow
+      cloud-utils
+      parted
+      xorg.xhost
+      gparted
+      unetbootin
       # Hyprland stuff
       waybar
       dunst
