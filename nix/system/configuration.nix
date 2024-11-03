@@ -77,6 +77,7 @@
       networkmanagerapplet
       swww
       nautilus
+      wl-clipboard
       # End Hyprland stuff
     ];
     localBinInPath = true;

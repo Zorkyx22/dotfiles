@@ -23,6 +23,10 @@
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
+  fileSystems."/Data" = 
+    { device = "/dev/nvme0n1p6";
+      fsType = "ext4";
+    };
 
   swapDevices = [ ];
 
