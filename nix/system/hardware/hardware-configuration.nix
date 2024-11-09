@@ -27,6 +27,10 @@
     { device = "/dev/nvme0n1p6";
       fsType = "ext4";
     };
+  fileSystems."/mnt/nfs" =
+    { device = "Hive:/";
+      fsType = "nfs4";
+    };
 
   swapDevices = [ ];
 

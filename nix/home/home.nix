@@ -49,7 +49,7 @@
     x11.enable = true;
     gtk.enable = true;
     name = "Banana";
-    size = 96;
+    size = 48;
     package = pkgs.banana-cursor;
   };
 }

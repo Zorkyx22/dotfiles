@@ -41,6 +41,7 @@
 	  kanata
 	  python313
 	  banana-cursor
+          calibre
 	];
   };
  
@@ -65,6 +66,8 @@
       xorg.xhost
       gparted
       unetbootin
+      ntfs3g
+      nfs-utils
       # Hyprland stuff
       waybar
       dunst
@@ -87,6 +90,11 @@
     };
   };
 
+  boot.initrd = {
+    supportedFilesystems = [ "nfs" ];
+    kernelModules = [ "nfs" ];
+  };
+
   xdg.portal = {
     enable = true;
     extraPortals = [pkgs.xdg-desktop-portal-gtk];
@@ -106,6 +114,7 @@
       };
     };
 
+    displayManager.sddm.enable = true;
     pipewire = {
       enable = true;
       alsa.enable = true;
@@ -123,6 +132,9 @@
     xwayland.enable = true;
   };
   programs.steam.enable = true;
+  programs.adb.enable = true;
+
+
   stylix.base16Scheme = {
     base00= "303446"; # base
     base01= "292c3c"; # mantle

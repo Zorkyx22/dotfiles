@@ -29,6 +29,15 @@
           inputs.stylix.nixosModules.stylix
         ];
       };
+      live = nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = {inherit inputs;};
+        modules = [
+          (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
+          ./nix/system/configuration.nix
+          inputs.stylix.nixosModules.stylix
+        ];
+      };
     };
     homeConfigurations = {
       sire-n1chaulas = home-manager.lib.homeManagerConfiguration {
