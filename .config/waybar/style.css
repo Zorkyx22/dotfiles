@@ -51,7 +51,8 @@ window#waybar {
 #memory,
 #wireplumber,
 #clock,
-#network {
+#network,
+#battery {
   margin: 6px 3px;
   padding: 6px 12px;
   background-color: #1e1e2e;
@@ -61,7 +62,6 @@ window#waybar {
 #network {
   background-color: #94e2d5;
   padding-right: 17px;
-  margin-right: 10px;
 }
 
 #memory {
@@ -70,6 +70,7 @@ window#waybar {
 
 #wireplumber {
   background-color: #f9e2af;
+  padding-right: 17px;
 }
 
 #idle_inhibitor {
@@ -84,6 +85,11 @@ window#waybar {
 
 #cpu {
   background-color: #f2cdcd;
+}
+
+#battery {
+  background-color: #FAA0A0;
+  margin-right: 10px;
 }
 
 

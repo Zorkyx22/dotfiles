@@ -1,3 +1,5 @@
 cleanboot.sh
 .git
 .stow-local-ignore
+.config/Bitwarden
+.config/dconf

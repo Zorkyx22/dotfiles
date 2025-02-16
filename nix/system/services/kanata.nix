@@ -5,13 +5,14 @@ services.kanata = {
     keyboards = {
 	internalKeyboard = {
 	    devices = [
-		"/dev/input/by-id/usb-SINO_WEALTH_Bluetooth_Keyboard-event-kbd"
+		"/dev/input/by-path/platform-i8042-serio-0-event-kbd"
 	    ];
 	    extraDefCfg = "process-unmapped-keys yes";
 	    config = ''
-		(defsrc caps )
+		(defsrc caps alt)
 		(defalias caps (tap-hold 200 200 esc lmet))
-		(deflayer Nichaud @caps )
+		(defalias altenter (tap-hold 200 200 enter alt))
+		(deflayer Nichaud @caps @altenter)
 	    '';
 	};
     };

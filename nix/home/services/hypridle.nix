@@ -4,17 +4,18 @@
     enable = true;
     settings = {
      general = {
+        before_sleep_cmd = "hyprlock";
         after_sleep_cmd = "hyprctl dispatch dpms on";
         ignore_dbus_inhibit = false;
         lock_cmd = "hyprlock";
       };
     listener = [
         {
-          timeout = 300;
+          timeout = 180;
           on-timeout = "hyprlock";
         }
         {
-          timeout = 900;
+          timeout = 300;
           on-timeout = "hyprctl dispatch dmps off";
           on-resume = "hyprctl dispatch dpms on";
         }

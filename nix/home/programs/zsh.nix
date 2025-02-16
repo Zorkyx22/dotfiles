@@ -4,7 +4,8 @@
     enable = true;
     oh-my-zsh = {
       enable = true;
-      theme = "nicoulaj";
+      custom = "$HOME/.zsh-custom";
+      theme = "headline";
     };
   };
 }

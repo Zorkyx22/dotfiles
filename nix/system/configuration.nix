@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, ghostty, ... }:
 
 {
   imports =
@@ -23,7 +23,7 @@
   };
 
   networking = {
-    hostName = "predator";
+    hostName = "worker";
     networkmanager.enable = true;
     firewall.allowedTCPPorts = [ 3389 ];
   };
@@ -37,11 +37,9 @@
 	description = "Nicolas";
 	extraGroups = [ "networkmanager" "wheel" "uinput" "input"];
 	packages = with pkgs; [
-	  kdePackages.kate
 	  kanata
 	  python313
 	  banana-cursor
-          calibre
 	];
   };
  
@@ -51,6 +49,8 @@
   # $ nix search wget
   environment = {
     systemPackages = with pkgs; [  
+      brightnessctl
+      nodejs_23
       neovim
       git
       gcc
@@ -73,6 +73,7 @@
       dunst
       libnotify
       kitty 
+      alacritty
       rofi-wayland
       rofi-rbw
       rofi-menugen
@@ -82,7 +83,7 @@
       nautilus
       wl-clipboard
       # End Hyprland stuff
-    ];
+    ] ;
     localBinInPath = true;
     sessionVariables = {
       WLR_NO_HARDWARE_CURSORS = "1";
@@ -112,9 +113,12 @@
         layout="us";
         variant="";
       };
+      displayManager.gdm = {
+	enable = true;
+	wayland = true;
+      };
     };
 
-    displayManager.sddm.enable = true;
     pipewire = {
       enable = true;
       alsa.enable = true;
@@ -131,7 +135,6 @@
     enable = true;
     xwayland.enable = true;
   };
-  programs.steam.enable = true;
   programs.adb.enable = true;
 
 

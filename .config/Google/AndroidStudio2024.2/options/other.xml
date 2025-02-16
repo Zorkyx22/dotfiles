@@ -1,0 +1,43 @@
+<application>
+  <component name="FileEditorProviderManager"><![CDATA[{}]]></component>
+  <component name="NotRoamableUiSettings">
+    <option name="fontSize" value="12.0" />
+    <option name="presentationModeIdeScale" value="1.75" />
+  </component>
+  <component name="PropertyService"><![CDATA[{
+  "keyToString": {
+    "LAST_CALCULATED_COLOR_INDEX_KEY": "3",
+    "MarketplacePluginsSearchHistory": "android command-line tool\ncommand-line tool\ncommand-line\ncommand-\ncommand",
+    "NextRunPlatformUpdateBuild": "AI-242.23339.11.2421.12550806",
+    "NextRunPlatformUpdateVersion": "Ladybug | 2024.2.1 Patch 2",
+    "RunOnceActivity.VFSInitializationConditionsToFusReporter": "true",
+    "RunOnceActivity.cidr.test.framework.showIndexingAsTask": "true",
+    "RunOnceActivity.cidr.test.roots.only": "true",
+    "SettingsSearchHistory": "emu\nsdk",
+    "android.sdk.path": "/home/sire-n1chaulas/Android/Sdk",
+    "ask.about.ctrl.y.shortcut.v2": "true",
+    "experimental.ui.used.version": "242.21829.142.2421.12409432",
+    "fileTypeChangedCounter": "1",
+    "fontSizeToResetConsole": "13.0",
+    "fontSizeToResetEditor": "13.0",
+    "ide.memory.adjusted": "true",
+    "input.method.disabler.muted": "true",
+    "installed.kotlin.plugin.version": "242.21829.142.2421.12409432-AS",
+    "last_opened_file_path": "/home/sire-n1chaulas/Projects/Cuisine",
+    "migrated.non.roamable.values.from.general.settings": "true",
+    "previousColorScheme": "_@user_Dark",
+    "registry.to.advanced.settings.migration.build": "AI-242.21829.142.2421.12409432"
+  },
+  "keyToStringList": {
+    "file.chooser.recent.files": [
+      "/home/sire-n1chaulas/Projects/Cuisine"
+    ],
+    "fileTypeDetectors": [
+      "com.intellij.ide.scratch.ScratchFileServiceImpl$Detector",
+      "com.jetbrains.cidr.lang.OCHeaderFileTypeDetector",
+      "com.android.tools.idea.profilers.capture.MemoryCaptureFileType$Detector",
+      "org.jetbrains.plugins.textmate.TextMateFileType$TextMateFileDetector"
+    ]
+  }
+}]]></component>
+</application>

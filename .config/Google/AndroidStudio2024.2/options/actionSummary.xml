@@ -1,0 +1,52 @@
+<application>
+  <component name="ActionsLocalSummary">
+    <e n="Android.DeviceManager2">
+      <i c="1" l="1731253418311" />
+    </e>
+    <e n="EditorBackSpace">
+      <i c="3" l="1731250169294" />
+    </e>
+    <e n="EditorPreviousWord">
+      <i c="6" l="1731250168154" />
+    </e>
+    <e n="SettingsEntryPoint">
+      <i c="1" l="1731253166561" />
+    </e>
+    <e n="ShowSettings">
+      <i c="1" l="1731253175907" />
+    </e>
+    <e n="WelcomeScreen.OpenProject">
+      <i c="1" l="1731253087166" />
+    </e>
+    <e n="com.android.tools.idea.devicemanagerv2.ColdBootAction">
+      <i c="1" l="1731253424488" />
+    </e>
+    <e n="com.android.tools.idea.streaming.core.StreamingToolWindowManager$NewTabAction">
+      <i c="1" l="1731253428366" />
+    </e>
+    <e n="com.android.tools.idea.streaming.core.StreamingToolWindowManager$StartAvdAction">
+      <i c="1" l="1731253431202" />
+    </e>
+    <e n="com.intellij.ide.plugins.newui.TabbedPaneHeaderComponent$3">
+      <i c="1" l="1731250174926" />
+    </e>
+    <e n="com.intellij.openapi.wm.impl.SquareAnActionButton">
+      <i c="2" l="1731253400236" />
+    </e>
+    <e n="com.intellij.openapi.wm.impl.customFrameDecorations.header.toolbar.MainMenuButton$ShowMenuAction">
+      <i c="1" l="1731253406642" />
+    </e>
+    <e n="com.intellij.openapi.wm.impl.welcomeScreen.NotificationEventAction">
+      <i c="1" l="1731250106323" />
+    </e>
+    <e n="com.intellij.openapi.wm.impl.welcomeScreen.WelcomeScreenComponentFactory$4">
+      <i c="2" l="1731250378084" />
+    </e>
+    <e n="com.intellij.toolWindow.ShowMoreToolWindowsAction">
+      <i c="1" l="1731253154808" />
+    </e>
+    <e n="com.intellij.toolWindow.ToolWindowHeader$HideAction">
+      <i c="1" l="1731253112207" />
+    </e>
+  </component>
+</application>

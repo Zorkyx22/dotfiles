@@ -1,5 +1,5 @@
 {
-  description = "Predator system configuration";
+  description = "Worker system configuration";
 
   inputs = {
     nixpkgs.url = "github:NixOs/nixpkgs/nixos-unstable";
@@ -10,9 +10,10 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    ghostty.url="github:ghostty-org/ghostty";
   };
   
-  outputs = { nixpkgs, home-manager, ... } @ inputs:
+  outputs = { nixpkgs, ghostty,  home-manager, ... } @ inputs:
   let 
     system = "x86_64-linux";
     lib = nixpkgs.lib;
@@ -21,24 +22,17 @@
     };
   in {
     nixosConfigurations = {
-      predator = lib.nixosSystem {
+      worker = lib.nixosSystem {
         inherit system;
-        specialArgs = {inherit inputs;};
-	modules = [
-          ./nix/system/configuration.nix
-          inputs.stylix.nixosModules.stylix
-        ];
-      };
-      live = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {inherit inputs;};
+        specialArgs = { inherit inputs; };
         modules = [
-          (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
           ./nix/system/configuration.nix
           inputs.stylix.nixosModules.stylix
+          { environment.systemPackages = [ inputs.ghostty.packages.x86_64-linux.default ]; }
         ];
       };
     };
+
     homeConfigurations = {
       sire-n1chaulas = home-manager.lib.homeManagerConfiguration {
 	inherit pkgs;

@@ -5,7 +5,7 @@
   "spacing": 5,
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["clock"],
-  "modules-right": ["cpu","memory","wireplumber", "network"],
+  "modules-right": ["cpu","memory","wireplumber", "network", "battery"],
   "cpu": { 
     "interval": 10, 
     "format": "CPU: {usage}%" 
@@ -29,18 +29,32 @@
             "headphone": "",
             "default": ["󰖀","󰕾",""]
         },
-        "on-click": "~/.config/rofi/scripts/audio_changer.py &",
+        "on-click": "~/.config/rofi.sire-n1chaulas/scripts/audio.sh",
         "scroll-step": 1
   },
   "network": {
+        "format" : "󱛇",//When antenna is off, this icon will show
         "format-wifi" : "{icon}",
         "format-icons": ["󰤯","󰤟","󰤢","󰤥","󰤨"],
         "format-ethernet": "󰀂",
-	"format-alt" : "󱛇",
         "format-disconnected" : "󰖪",
 	"tooltip-format-wifi": "{icon} {essid}\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
         "tooltip-format-ethernet": "󰀂  {ifname}\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
 	"tooltip-format-disconnected": "Disconnected",
-	"on-click": "~/.config/rofi/wifi/wifi.sh &",
-   }
+	"on-click": "~/.config/rofi.sire-n1chaulas/scripts/wifi.sh &",
+   },
+  "battery": {
+        "format": "<span font='Font Awesome 5 Free 11'>{icon}</span>  {capacity}% - {time}",
+        "format-icons": ["", "", "", "", ""],
+        "format-time": "{H}h{M}m",
+        "format-charging": "<span font='Font Awesome 5 Free'></span>  <span font='Font Awesome 5 Free 11'>{icon}</span>  {capacity}% - {time}",
+        "format-full": "<span font='Font Awesome 5 Free'></span>  <span font='Font Awesome 5 Free 11'>{icon}</span>  Charged",
+        "interval": 30,
+        "states": {
+            "warning": 25,
+            "critical": 10
+        },
+        "tooltip": false,
+        "on-click": "~/.config/rofi/powermenu/type-1/powermenu.sh &"
+    }
 }
