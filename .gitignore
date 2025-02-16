@@ -3,3 +3,4 @@ cleanboot.sh
 .stow-local-ignore
 .config/Bitwarden
 .config/dconf
+.config/discord
