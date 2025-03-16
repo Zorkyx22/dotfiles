@@ -31,15 +31,17 @@
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
+  virtualisation.docker.enable = true;
 
   users.users.sire-n1chaulas = {
   	isNormalUser = true;
 	description = "Nicolas";
-	extraGroups = [ "networkmanager" "wheel" "uinput" "input"];
+	extraGroups = [ "networkmanager" "wheel" "uinput" "input" "docker"];
 	packages = with pkgs; [
 	  kanata
 	  python313
 	  banana-cursor
+	  zathura
 	];
   };
  
@@ -58,7 +60,6 @@
       ffmpeg
       vesktop
       nixd
-      prismlauncher
       nvtopPackages.nvidia
       stow
       cloud-utils
@@ -68,6 +69,7 @@
       unetbootin
       ntfs3g
       nfs-utils
+      qemu
       # Hyprland stuff
       waybar
       dunst
@@ -82,6 +84,7 @@
       swww
       nautilus
       wl-clipboard
+      hyprshot
       # End Hyprland stuff
     ] ;
     localBinInPath = true;
@@ -136,6 +139,10 @@
     xwayland.enable = true;
   };
   programs.adb.enable = true;
+  programs.localsend =  {
+    enable=true;
+    openFirewall = true;
+  };
 
 
   stylix.base16Scheme = {
@@ -168,4 +175,5 @@
     desktop = 1.0;
     popups = 1.0;
   };
+
 }
