@@ -9,6 +9,7 @@
     ./programs/zsh.nix
     ./programs/firefox.nix
     ./programs/hyprlock.nix
+    ./programs/qutebrowser.nix
     ./services/hypridle.nix
   ];
 
@@ -35,6 +36,7 @@
     btop.enable = true;
     ripgrep.enable = true;
     pandoc.enable = true;
+    qutebrowser.enable = true;
   };
 
   gtk = {
