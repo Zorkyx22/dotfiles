@@ -5,10 +5,9 @@ cleanboot.sh
 !/.config/nvim
 !/.config/waybar
 !/.config/alactritty
+!/.config/zsh
+!/.config/rofi
+!/.config/rofi.sire-nichaulas
 .config/
 .config-bal/
-.config/Bitwarden
-.config/dconf
-.config/discord
-.config/google-chrome
 /res
