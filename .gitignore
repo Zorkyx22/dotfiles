@@ -1,6 +1,14 @@
 cleanboot.sh
 .git
 .stow-local-ignore
+!/.config/hypr
+!/.config/nvim
+!/.config/waybar
+!/.config/alactritty
+.config/
+.config-bal/
 .config/Bitwarden
 .config/dconf
 .config/discord
+.config/google-chrome
+/res

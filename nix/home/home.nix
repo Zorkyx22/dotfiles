@@ -25,9 +25,12 @@
     bitwarden
     xclip
     wine
+    networkmanagerapplet
     #fonts begin
-    nerdfonts
     font-awesome
+    papirus-icon-theme
+    papirus-folders
+    #nerd-fonts._0xproto
     #fonts end
   ];
 
@@ -36,7 +39,7 @@
     btop.enable = true;
     ripgrep.enable = true;
     pandoc.enable = true;
-    qutebrowser.enable = true;
+    qutebrowser.enable =true;
   };
 
   gtk = {
@@ -44,6 +47,10 @@
     theme = {
       package = pkgs.banana-cursor;
       name = "Banana";
+    };
+    iconTheme = {
+      package = pkgs.papirus-icon-theme;
+      name = "papirus-icon-theme";
     };
   };
 

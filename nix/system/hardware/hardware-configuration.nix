@@ -35,4 +35,15 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.bluetooth.enable = true;
+  hardware.xone.enable = true;
+  hardware.xpadneo.enable = true;
+
+  hardware.enableAllFirmware = true;
+  hardware.firmware = with pkgs; [
+    linux-firmware
+    sof-firmware
+  ];
+  boot.kernelParams = [ "snd_intel_dspcfg.dsp_driver=1" ];
+
 }

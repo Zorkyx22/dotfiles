@@ -3,8 +3,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware/hardware-configuration.nix
-      ./hardware/nvidia.nix
+      ./hardware/hardware-configuration.nix ./hardware/nvidia.nix
       ./services/tailscale.nix
       ./services/kanata.nix
     ];
@@ -25,23 +24,22 @@
   networking = {
     hostName = "worker";
     networkmanager.enable = true;
-    firewall.allowedTCPPorts = [ 3389 ];
+    firewall.allowedTCPPorts = [ 3389 8081 3000 ];
   };
 
-  # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   virtualisation.docker.enable = true;
 
   users.users.sire-n1chaulas = {
   	isNormalUser = true;
 	description = "Nicolas";
-	extraGroups = [ "networkmanager" "wheel" "uinput" "input" "docker"];
+	extraGroups = [ "networkmanager" "wheel" "uinput" "input" "docker" "plugdev" "adbusers" "audio"];
 	packages = with pkgs; [
 	  kanata
 	  python313
 	  banana-cursor
 	  zathura
+	  jq
 	];
   };
  
@@ -51,8 +49,11 @@
   # $ nix search wget
   environment = {
     systemPackages = with pkgs; [  
+      alsa-utils
+      pavucontrol
+      apulse
+      bluez-alsa
       brightnessctl
-      nodejs_23
       neovim
       git
       gcc
@@ -70,6 +71,8 @@
       ntfs3g
       nfs-utils
       qemu
+      nodejs
+      marksman
       # Hyprland stuff
       waybar
       dunst
@@ -105,6 +108,7 @@
   };
  
   services = {
+    udev.packages = [ pkgs.android-udev-rules ];
     openssh = {
       enable = true;
       settings.PasswordAuthentication = false;
@@ -122,17 +126,18 @@
       };
     };
 
-    pipewire = {
+    pulseaudio = {
       enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
+      support32Bit = true;
     };
-    
     # Disable CUPS to print documents. CVE 2024-something something
     printing.enable = false;
     gnome.sushi.enable = true;
 
+  };
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
   };
   programs.hyprland = {
     enable = true;
@@ -144,36 +149,39 @@
     openFirewall = true;
   };
 
-
-  stylix.base16Scheme = {
-    base00= "303446"; # base
-    base01= "292c3c"; # mantle
-    base02= "414559"; # surface0;
-    base03= "51576d"; # surface1;
-    base04= "626880"; # surface2;
-    base05= "c6d0f5"; # text;
-    base06= "f2d5cf"; # rosewater;
-    base07= "babbf1"; # lavender;
-    base08= "e78284"; # red;
-    base09= "ef9f76"; # peach;
-    base0A= "e5c890"; # yellow;
-    base0B= "a6d189"; # green;
-    base0C= "81c8be"; # teal;
-    base0D= "8caaee"; # blue;
-    base0E= "ca9ee6"; # mauve;
-    base0F= "eebebe"; # flamingo;
-  };
-  stylix.image = "~/Pictures/backgrounds/lock.png";
-  stylix.cursor = {
-    package = pkgs.banana-cursor;
-    name = "Banana";
-  };
-  stylix.polarity = "dark";
-  stylix.opacity = {
-    applications = 0.6;
-    terminal = 0.6;
-    desktop = 1.0;
-    popups = 1.0;
+  stylix = {
+    enable = true;
+    base16Scheme = {
+      base00= "303446"; # base
+      base01= "292c3c"; # mantle
+      base02= "414559"; # surface0;
+      base03= "51576d"; # surface1;
+      base04= "626880"; # surface2;
+      base05= "c6d0f5"; # text;
+      base06= "f2d5cf"; # rosewater;
+      base07= "babbf1"; # lavender;
+      base08= "e78284"; # red;
+      base09= "ef9f76"; # peach;
+      base0A= "e5c890"; # yellow;
+      base0B= "a6d189"; # green;
+      base0C= "81c8be"; # teal;
+      base0D= "8caaee"; # blue;
+      base0E= "ca9ee6"; # mauve;
+      base0F= "eebebe"; # flamingo;
+    };
+    image = ./res/image.jpg;
+    cursor = {
+      package = pkgs.banana-cursor;
+      name = "Banana";
+      size = 1;
+    };
+    polarity = "dark";
+    opacity = {
+      applications = 0.6;
+      terminal = 0.6;
+      desktop = 1.0;
+      popups = 1.0;
+    };
   };
 
 }
