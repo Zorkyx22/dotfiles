@@ -2,15 +2,13 @@
 {
   programs.git = {
     enable = true;
-    userName = "Zorkyx22";
-    userEmail = "icu.zorkyx@gmail.com";
-    extraConfig = {
-      init = {
-        defaultBranch = "main";
+    settings = {
+      user = {
+        name = "Zorkyx22";
+        email = "icu.zorkyx@gmail.com";
       };
-      pull = {
-        rebase = "false";
-      };
+      init.defaultBranch = "main";
+      pull.rebase = "false";
     };
   };
 } 

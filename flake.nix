@@ -13,10 +13,9 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    ghostty.url="github:ghostty-org/ghostty";
   };
   
-  outputs = { nixpkgs, ghostty,  home-manager, ... } @ inputs:
+  outputs = inputs @ { nixpkgs,  home-manager, stylix, ... }:
   let 
     system = "x86_64-linux";
     lib = nixpkgs.lib;
@@ -27,11 +26,10 @@
     nixosConfigurations = {
       worker = lib.nixosSystem {
         inherit system;
-        specialArgs = { inherit inputs; };
+        specialArgs = { inherit inputs stylix; };
         modules = [
           ./nix/system/configuration.nix
           inputs.stylix.nixosModules.stylix
-          { environment.systemPackages = [ inputs.ghostty.packages.x86_64-linux.default ]; }
         ];
       };
     };
@@ -39,8 +37,11 @@
     homeConfigurations = {
       sire-n1chaulas = home-manager.lib.homeManagerConfiguration {
 	inherit pkgs;
-        extraSpecialArgs = { inherit inputs; };
-        modules = [ ./nix/home/home.nix ];
+        extraSpecialArgs = { inherit inputs stylix ; };
+        modules = [
+          inputs.stylix.homeModules.stylix
+          ./nix/home/home.nix
+       ];
       };
     };
   };

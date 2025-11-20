@@ -6,6 +6,7 @@ services.kanata = {
 	internalKeyboard = {
 	    devices = [
 		"/dev/input/by-path/platform-i8042-serio-0-event-kbd"
+		"/dev/input/by-id/usb-SINO_WEALTH_Bluetooth_Keyboard-event-kbd"
 	    ];
 	    extraDefCfg = "process-unmapped-keys yes";
 	    config = ''

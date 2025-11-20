@@ -1,14 +1,16 @@
-{ pkgs, ghostty, ... }:
+{ config, pkgs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware/hardware-configuration.nix ./hardware/nvidia.nix
+      ./hardware/hardware-configuration.nix 
+      ./hardware/nvidia.nix
+      ./stylix.nix
       ./services/tailscale.nix
       ./services/kanata.nix
-    ];
-
-  # Bootloader.
+      ./syspackages.nix
+      ./users.nix
+    ]; # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -18,84 +20,23 @@
   i18n.defaultLocale = "en_CA.UTF-8";
   nixpkgs = {
     config.allowUnfree=true;
-    config.allowBroken=true;
-  };
-
-  networking = {
+    config.allowBroken=true; }; networking = {
     hostName = "worker";
     networkmanager.enable = true;
-    firewall.allowedTCPPorts = [ 3389 8081 3000 ];
+    firewall.allowedTCPPorts = [ 3389 ];#8081 3000 ];
   };
+  services.resolved.enable = true;
 
   security.rtkit.enable = true;
-  virtualisation.docker.enable = true;
+  security.pam.services.hyprlock = {};
 
-  users.users.sire-n1chaulas = {
-  	isNormalUser = true;
-	description = "Nicolas";
-	extraGroups = [ "networkmanager" "wheel" "uinput" "input" "docker" "plugdev" "adbusers" "audio"];
-	packages = with pkgs; [
-	  kanata
-	  python313
-	  banana-cursor
-	  zathura
-	  jq
-	];
-  };
- 
- nix.settings.allowed-users = [ "sire-n1chaulas"];
+  nix.settings.allowed-users = [ "sire-n1chaulas"];
+  users.groups.libvirtd.members = ["sire-n1chaulas"];
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment = {
-    systemPackages = with pkgs; [  
-      alsa-utils
-      pavucontrol
-      apulse
-      bluez-alsa
-      brightnessctl
-      neovim
-      git
-      gcc
-      firefox
-      ffmpeg
-      vesktop
-      nixd
-      nvtopPackages.nvidia
-      stow
-      cloud-utils
-      parted
-      xorg.xhost
-      gparted
-      unetbootin
-      ntfs3g
-      nfs-utils
-      qemu
-      nodejs
-      marksman
-      # Hyprland stuff
-      waybar
-      dunst
-      libnotify
-      kitty 
-      alacritty
-      rofi-wayland
-      rofi-rbw
-      rofi-menugen
-      rofi-calc
-      networkmanagerapplet
-      swww
-      nautilus
-      wl-clipboard
-      hyprshot
-      # End Hyprland stuff
-    ] ;
-    localBinInPath = true;
-    sessionVariables = {
-      WLR_NO_HARDWARE_CURSORS = "1";
-      NIXOS_OZONE_WL = "1";
-    };
-  };
+  fonts.packages = with pkgs; [
+      nerd-fonts.daddy-time-mono
+      nerd-fonts.symbols-only
+    ];
 
   boot.initrd = {
     supportedFilesystems = [ "nfs" ];
@@ -106,9 +47,17 @@
     enable = true;
     extraPortals = [pkgs.xdg-desktop-portal-gtk];
   };
- 
   services = {
-    udev.packages = [ pkgs.android-udev-rules ];
+    hardware.bolt.enable = true;
+    samba = {
+      enable = true;
+      package = pkgs.samba4Full;
+      openFirewall = true;
+    };
+    udev.packages = [ 
+      pkgs.android-udev-rules
+      pkgs.platformio-core.udev
+    ];
     openssh = {
       enable = true;
       settings.PasswordAuthentication = false;
@@ -120,68 +69,47 @@
         layout="us";
         variant="";
       };
-      displayManager.gdm = {
-	enable = true;
-	wayland = true;
-      };
+    };
+    displayManager.gdm = {
+      enable = true;
+      wayland = true;
     };
 
     pulseaudio = {
       enable = true;
       support32Bit = true;
     };
+    pipewire.enable = false;
     # Disable CUPS to print documents. CVE 2024-something something
     printing.enable = false;
     gnome.sushi.enable = true;
 
   };
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-  };
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
-  programs.adb.enable = true;
-  programs.localsend =  {
-    enable=true;
-    openFirewall = true;
+  programs = {
+    hyprland = {
+      enable = false;
+      xwayland.enable = true;
+    };
+    niri.enable = true;
+    adb.enable = true;
+    localsend =  {
+      enable=true;
+      openFirewall = true;
+    };
+    virt-manager.enable = true;
   };
 
-  stylix = {
-    enable = true;
-    base16Scheme = {
-      base00= "303446"; # base
-      base01= "292c3c"; # mantle
-      base02= "414559"; # surface0;
-      base03= "51576d"; # surface1;
-      base04= "626880"; # surface2;
-      base05= "c6d0f5"; # text;
-      base06= "f2d5cf"; # rosewater;
-      base07= "babbf1"; # lavender;
-      base08= "e78284"; # red;
-      base09= "ef9f76"; # peach;
-      base0A= "e5c890"; # yellow;
-      base0B= "a6d189"; # green;
-      base0C= "81c8be"; # teal;
-      base0D= "8caaee"; # blue;
-      base0E= "ca9ee6"; # mauve;
-      base0F= "eebebe"; # flamingo;
-    };
-    image = ./res/image.jpg;
-    cursor = {
-      package = pkgs.banana-cursor;
-      name = "Banana";
-      size = 1;
-    };
-    polarity = "dark";
-    opacity = {
-      applications = 0.6;
-      terminal = 0.6;
-      desktop = 1.0;
-      popups = 1.0;
-    };
+  virtualisation = {
+    docker.enable = true;
+    libvirtd.enable = true;
+    spiceUSBRedirection.enable = true;
   };
 
+  environment = {
+   localBinInPath = true;
+    sessionVariables = {
+      WLR_NO_HARDWARE_CURSORS = "1";
+      NIXOS_OZONE_WL = "1";
+    };
+  };
 }

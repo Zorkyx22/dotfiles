@@ -12,7 +12,7 @@
           "browser.search.defaultenginename" = "duckduckgo";
           "browser.search.order.1" = "duckduckgo";
         };
-        extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
+        extensions.packages = with inputs.firefox-addons.packages."x86_64-linux"; [
           ublock-origin
           bitwarden
           darkreader

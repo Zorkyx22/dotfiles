@@ -1,4 +1,4 @@
-{config, pkgs, inputs, ...}:
+{ config, pkgs, ...}:
 
 {
   imports = [
@@ -11,13 +11,12 @@
     ./programs/hyprlock.nix
     ./programs/qutebrowser.nix
     ./services/hypridle.nix
-  ];
-
+  ]; 
   home.username = "sire-n1chaulas";
   home.homeDirectory = "/home/sire-n1chaulas";
 
   nixpkgs.config.allowUnfree = true;
-  home.stateVersion = "24.05";
+  home.stateVersion = "24.05"; 
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
@@ -25,13 +24,10 @@
     bitwarden
     xclip
     wine
-    networkmanagerapplet
-    #fonts begin
+    networkmanagerapplet 
     font-awesome
     papirus-icon-theme
     papirus-folders
-    #nerd-fonts._0xproto
-    #fonts end
   ];
 
   programs = {
@@ -40,25 +36,28 @@
     ripgrep.enable = true;
     pandoc.enable = true;
     qutebrowser.enable =true;
+    superfile.enable = true;
   };
+  services.hyprpolkitagent.enable = true;
 
-  gtk = {
-    enable = true;
-    theme = {
-      package = pkgs.banana-cursor;
-      name = "Banana";
-    };
-    iconTheme = {
-      package = pkgs.papirus-icon-theme;
-      name = "papirus-icon-theme";
-    };
-  };
+  #  gtk = {
+  #  enable = true;
+  #  theme = {
+  #    package = pkgs.banana-cursor;
+  #    name = "Banana";
+  #  };
+  #  iconTheme = {
+  #    package = pkgs.papirus-icon-theme;
+  #    name = "papirus-icon-theme";
+  #  };
+  #};
 
-  home.pointerCursor = {
-    x11.enable = true;
-    gtk.enable = true;
-    name = "Banana";
-    size = 48;
-    package = pkgs.banana-cursor;
-  };
+  #home.pointerCursor = {
+  #  x11.enable = true;
+  #  gtk.enable = true;
+  #  name = "Banana";
+  #  size = 48;
+  #  package = pkgs.banana-cursor;
+  #};
+  
 }
