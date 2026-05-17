@@ -2,7 +2,7 @@
 	caps
 )
 (defalias
-	escaps (tap-hold esc super 100 100)
+	escaps (tap-hold 100 100 esc MetaLeft )
 )
 (deflayer nichaud
 	@escaps

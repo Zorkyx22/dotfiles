@@ -16,6 +16,20 @@
 	  typst-live
 	  makemkv
 	  vlc
+	  gimp
+	  inkscape
+	  audacity
+	  claude-code
+	  claude-monitor
+	  felix-fm
+	  bat
+	  chafa
+	  mediawriter
+	  thunderbird
+	  prismlauncher
+	  openjdk25
+	  signal-desktop
+	  ghidra
 	];
     };
   };

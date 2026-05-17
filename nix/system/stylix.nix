@@ -4,9 +4,9 @@ stylix = {
     enable = true;
     enableReleaseChecks = false;
     fonts = {
-      serif.package = pkgs.nerd-fonts.daddy-time-mono;
-      sansSerif.package = pkgs.nerd-fonts.daddy-time-mono;
-      monospace.package = pkgs.nerd-fonts.daddy-time-mono;
+      serif.package = pkgs.nerd-fonts.profont;
+      sansSerif.package = pkgs.nerd-fonts.profont;
+      monospace.package = pkgs.nerd-fonts.profont;
       };
     image = ../../res/current_bg;
     cursor = {

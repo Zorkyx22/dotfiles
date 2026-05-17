@@ -1,18 +1,20 @@
 { config, pkgs, ...}:
-{
-environment.systemPackages = with pkgs; [  
+{ environment.systemPackages = with pkgs; [  
       # Hardware Contols
       alsa-utils
       pavucontrol
+      pulseaudio
       apulse
       bluez-alsa
       brightnessctl
       parted
       xorg.xhost
+      xwayland-satellite
       gparted
       unetbootin
       ntfs3g
       nfs-utils
+      android-tools
 
       # Core utilities
       ffmpeg
@@ -20,16 +22,30 @@ environment.systemPackages = with pkgs; [
       stow
       qemu
       tree
-      bat
       jq
+      fd
       fzf
       zip
       unzip
       traceroute
+      hplip
 
       # Code Editing
       neovim
       git
+
+      # language servers
+      nil
+      lua-language-server
+      rust-analyzer
+      zls
+      ty
+      tinymist
+      marksman
+
+      # Linters
+      alejandra
+      ruff
 
       # Applications
       alacritty
@@ -40,6 +56,7 @@ environment.systemPackages = with pkgs; [
 
       # Hyprland stuff
       waybar
+      quickshell
       dunst
       swww
       libnotify

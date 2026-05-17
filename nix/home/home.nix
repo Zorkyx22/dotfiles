@@ -21,7 +21,7 @@
 
   home.packages = with pkgs; [
     discord
-    bitwarden
+    bitwarden-desktop
     xclip
     wine
     networkmanagerapplet 
@@ -36,7 +36,6 @@
     ripgrep.enable = true;
     pandoc.enable = true;
     qutebrowser.enable =true;
-    superfile.enable = true;
   };
   services.hyprpolkitagent.enable = true;
 

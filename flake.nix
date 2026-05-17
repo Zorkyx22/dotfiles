@@ -16,11 +16,15 @@
   };
   
   outputs = inputs @ { nixpkgs,  home-manager, stylix, ... }:
-  let 
+  let
     system = "x86_64-linux";
     lib = nixpkgs.lib;
+    overlay = final: prev: {
+      pi-coding-agent = final.callPackage ./nix/packages/pi-coding-agent.nix {};
+    };
     pkgs = import nixpkgs {
         inherit system;
+        overlays = [ overlay ];
     };
   in {
     nixosConfigurations = {
@@ -28,6 +32,7 @@
         inherit system;
         specialArgs = { inherit inputs stylix; };
         modules = [
+          { nixpkgs.overlays = [ overlay ]; }
           ./nix/system/configuration.nix
           inputs.stylix.nixosModules.stylix
         ];

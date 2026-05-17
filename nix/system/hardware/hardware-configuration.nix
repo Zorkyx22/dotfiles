@@ -44,6 +44,35 @@
     linux-firmware
     sof-firmware
   ];
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver # LIBVA_DRIVER_NAME=iHD
+      intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+      libvdpau-va-gl
+    ];
+  };
+  services.printing.enable = true;
+  services.printing.drivers = [ pkgs.hplip ];
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+  hardware.printers = {
+    ensurePrinters = [
+    {
+      name = "Dell-D4100";
+      location = "Home";
+      deviceUri = "usb://HP/Deskjet%20D4100%20series?serial=TH64S3303S04D6";
+      model = "drv:///hp/hpcups.drv/hp-deskjet_d4100_series.ppd";
+      ppdOptions = {
+        PageSize = "A4";
+        };
+      }
+    ];
+  };
+  environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; };
   boot.kernelParams = [ "snd_intel_dspcfg.dsp_driver=1" ];
 
 }

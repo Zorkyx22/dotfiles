@@ -2,10 +2,14 @@
 {
   programs.zsh = {
     enable = true;
+    enableCompletion = true;
     oh-my-zsh = {
       enable = true;
       custom = "$HOME/.zsh-custom";
-      theme = "headline";
     };
+    initContent = ''
+      export EDITOR=nvim
+      source $HOME/.zsh-custom/themes/headline.zsh-theme
+      '';
   };
 }

@@ -35,6 +35,7 @@
 
   fonts.packages = with pkgs; [
       nerd-fonts.daddy-time-mono
+      nerd-fonts.profont
       nerd-fonts.symbols-only
     ];
 
@@ -55,7 +56,6 @@
       openFirewall = true;
     };
     udev.packages = [ 
-      pkgs.android-udev-rules
       pkgs.platformio-core.udev
     ];
     openssh = {
@@ -76,12 +76,10 @@
     };
 
     pulseaudio = {
-      enable = true;
+      enable = false;
       support32Bit = true;
     };
-    pipewire.enable = false;
-    # Disable CUPS to print documents. CVE 2024-something something
-    printing.enable = false;
+    pipewire.enable = true;
     gnome.sushi.enable = true;
 
   };
@@ -91,12 +89,19 @@
       xwayland.enable = true;
     };
     niri.enable = true;
-    adb.enable = true;
     localsend =  {
       enable=true;
       openFirewall = true;
     };
     virt-manager.enable = true;
+    ghidra.enable = true;
+    obs-studio.enable = true;
+    steam = {
+      enable =true;
+      package = pkgs.steam.override {
+        extraArgs = "-system-composer";
+      };
+    };
   };
 
   virtualisation = {
@@ -107,6 +112,9 @@
 
   environment = {
    localBinInPath = true;
+    variables = {
+      EDITOR = "nvim";
+    };
     sessionVariables = {
       WLR_NO_HARDWARE_CURSORS = "1";
       NIXOS_OZONE_WL = "1";

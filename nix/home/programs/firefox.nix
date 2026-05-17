@@ -3,6 +3,7 @@
 {
     programs.firefox = {
       enable = true;
+      configPath = "~/.config/mozilla/firefox";
       profiles.default = {
         id = 0;
         name = "default";
